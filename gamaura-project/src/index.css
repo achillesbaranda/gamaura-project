@@ -324,32 +324,23 @@
 }
 
 .sk-ad {
-  background: linear-gradient(135deg, #2563eb, #3b82f6);
   border-radius: 0.75rem;
-  padding: 2rem;
   text-align: center;
   max-width: 80rem;
   margin: 0 auto;
+  overflow: hidden;
 }
 
-.sk-ad-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
+.ad-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  transition: transform 0.3s ease;
 }
 
-.sk-logo {
-  color: white;
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-
-.sk-text {
-  color: white;
-  font-size: 1.75rem;
-  font-weight: bold;
+.ad-image:hover {
+  transform: scale(1.02);
 }
 
 .ad-disclaimer {
@@ -685,6 +676,198 @@
   background-color: #15803d;
 }
 
+/* Browse Carousel Styles */
+.browse-carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.browse-carousel-wrapper {
+  flex: 1;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+.browse-carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.browse-slide {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.browse-games-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .browse-games-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .browse-games-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.browse-game-card {
+  background: linear-gradient(135deg, #1e293b, #334155);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.browse-game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.browse-game-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.browse-game-content {
+  padding: 1.5rem;
+}
+
+.browse-game-title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.browse-game-offer {
+  color: #94a3b8;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.browse-game-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.browse-game-platforms {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.browse-platform-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+}
+
+.browse-platform-ps {
+  background-color: #2563eb;
+}
+
+.browse-platform-pc {
+  background-color: #4b5563;
+}
+
+.browse-platform-mobile {
+  background-color: #7c3aed;
+}
+
+.browse-platform-nintendo {
+  background-color: #dc2626;
+}
+
+.browse-platform-xbox {
+  background-color: #16a34a;
+}
+
+.browse-game-price {
+  color: #4ade80;
+  font-weight: bold;
+  font-size: 1.125rem;
+}
+
+.browse-game-button {
+  width: 100%;
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.browse-game-button:hover {
+  background: linear-gradient(135deg, #15803d, #16a34a);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.browse-carousel-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.browse-carousel-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+.browse-carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.browse-carousel-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.browse-carousel-indicator.active {
+  background: #4ade80;
+  transform: scale(1.2);
+}
+
+.browse-carousel-indicator:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
 .homepage-category-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -740,16 +923,23 @@
 }
 
 .homepage-cola-ad {
-  background-color: #dc2626;
   border-radius: 0.5rem;
-  padding: 1rem;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .homepage-cola-image {
-  border-radius: 0.25rem;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.homepage-cola-image:hover {
+  transform: scale(1.02);
 }
 
 .homepage-footer {
