@@ -1,2 +1,2 @@
 # My Project
-This is my first project
+This is my gamaura (website) project
