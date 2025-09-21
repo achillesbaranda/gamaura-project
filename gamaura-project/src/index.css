@@ -1,16 +1,849 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+.homepage-container {
+  min-height: 100vh;
+  background: #B95588;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
+.homepage-header {
+  background-color: #260C15;
+  padding: 0.75rem 1rem;
+}
+
+
+.homepage-main-section {
+  padding: 2rem 1rem;
+}
+
+.homepage-main-content {
+  max-width: 80rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .homepage-main-content {
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+  }
+}
+
+
+.game-carousel {
+  position: relative;
+}
+
+.carousel-container {
+  position: relative;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+}
+
+.carousel-slide {
+  position: relative;
+}
+
+.game-card-large {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+}
+
+.game-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.game-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+}
+
+.game-card-content {
+  color: white;
+  width: 100%;
+}
+
+.game-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.game-subtitle {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+}
+
+.game-screenshots {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.screenshot-thumbnail {
+  width: 60px;
+  height: 34px;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.3);
+  transition: all 0.2s ease;
+}
+
+.screenshot-thumbnail:hover {
+  border-color: rgba(255,255,255,0.8);
+}
+
+.screenshot-thumbnail.clickable {
+  cursor: pointer;
+  position: relative;
+}
+
+.screenshot-thumbnail.clickable:hover {
+  border-color: #4ade80;
+  box-shadow: 0 0 10px rgba(74, 222, 128, 0.3);
+}
+
+.screenshot-thumbnail.clickable:active {
+  transform: scale(0.95);
+}
+
+.screenshot-thumbnail.is-main-image {
+  border-color: #f59e0b;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.screenshot-thumbnail.is-main-image::before {
+  content: "📸";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #f59e0b;
+  color: white;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  z-index: 1;
+}
+
+.screenshot-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.screenshot-image {
+  transition: transform 0.2s ease;
+}
+
+.screenshot-thumbnail:hover .screenshot-image {
+  transform: scale(1.05);
+}
+
+
+.game-card-image {
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+.screenshot-thumbnail.clickable:hover::after {
+  content: "🔄";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+.game-status {
+  color: #4ade80;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.game-pricing {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.discount-badge {
+  background-color: #16a34a;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.price-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #9ca3af;
+  font-size: 0.875rem;
+}
+
+.current-price {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.2s;
+  border-radius: 50%;
+}
+
+.carousel-btn:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+.carousel-btn-prev {
+  left: 1rem;
+}
+
+.carousel-btn-next {
+  right: 1rem;
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.3);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.indicator.active {
+  background-color: white;
+}
+
+
+.earbuds-section {
+  background: linear-gradient(135deg, #581c87, #7c3aed);
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.earbuds-image-container {
+  margin-bottom: 2rem;
+}
+
+.earbuds-image {
+  width: 200px;
+  height: 150px;
+  object-fit: contain;
+  border-radius: 0.5rem;
+}
+
+.earbuds-title {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.buy-button {
+  background-color: #2563eb;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-size: 1.125rem;
+  transition: background-color 0.2s;
+}
+
+.buy-button:hover {
+  background-color: #1d4ed8;
+}
+
+
+.ad-section {
+  padding: 1rem;
+}
+
+.sk-ad {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  text-align: center;
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.sk-ad-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.sk-logo {
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.sk-text {
+  color: white;
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.ad-disclaimer {
+  color: rgba(255,255,255,0.8);
+  font-size: 0.875rem;
+}
+
+.homepage-header-content {
+  max-width: 80rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.homepage-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.homepage-logo-icon {
+  width: 2rem;
+  height: 2rem;
+  background-color: #a855f7;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.homepage-logo-text {
+  color: white;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.homepage-nav {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .homepage-nav {
+    display: flex;
+  }
+}
+
+.homepage-nav-link {
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.homepage-nav-link:hover {
+  color: #c084fc;
+}
+
+.homepage-search {
+  display: none;
+  align-items: center;
+  background-color: white;
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  max-width: 20rem;
+}
+
+@media (min-width: 768px) {
+  .homepage-search {
+    display: flex;
+  }
+}
+
+.homepage-search-input {
+  flex: 1;
+  outline: none;
+  font-size: 0.875rem;
+  border: none;
+}
+
+.homepage-mobile-menu {
+  display: block;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .homepage-mobile-menu {
+    display: none;
+  }
+}
+
+.homepage-section {
+  padding: 2rem 1rem;
+}
+
+.homepage-section-content {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.homepage-hero-card {
+  background: linear-gradient(to right, #ea580c, #facc15);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.homepage-hero-content {
+  position: relative;
+  z-index: 10;
+}
+
+.homepage-hero-title {
+  color: white;
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .homepage-hero-title {
+    font-size: 2.25rem;
+  }
+}
+
+.homepage-hero-badge {
+  background-color: #22c55e;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.homepage-hero-bg {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5;
+  background-image: url('https://via.placeholder.com/400x200/333/fff?text=PUBG');
+}
+
+.homepage-earbuds-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #6b21a8;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .homepage-earbuds-section {
+    flex-direction: row;
+  }
+}
+
+.homepage-earbuds-image {
+  width: 100%;
+  max-width: 18rem;
+  margin: 0 auto;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .homepage-earbuds-image {
+    width: 50%;
+    margin-bottom: 0;
+  }
+}
+
+.homepage-earbuds-content {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .homepage-earbuds-content {
+    width: 50%;
+    text-align: left;
+  }
+}
+
+.homepage-earbuds-title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.homepage-buy-button {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.homepage-buy-button:hover {
+  background-color: #1d4ed8;
+}
+
+.homepage-ad-section {
+  background-color: #2563eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.homepage-ad-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.homepage-ad-title {
+  color: white;
+  font-weight: bold;
+  font-size: 1.125rem;
+}
+
+.homepage-ad-subtitle {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.homepage-ad-text {
+  color: white;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.homepage-browse-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.homepage-browse-title {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.homepage-games-scroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
+
+.homepage-game-card {
+  flex-shrink: 0;
+  background-color: #6b21a8;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  width: 16rem;
+}
+
+.homepage-game-image {
+  width: 100%;
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.homepage-game-title {
+  color: white;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.homepage-game-offer {
+  color: #d1d5db;
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+}
+
+.homepage-game-platforms {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.homepage-platform-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  color: white;
+}
+
+.homepage-platform-ps {
+  background-color: #2563eb;
+}
+
+.homepage-platform-pc {
+  background-color: #4b5563;
+}
+
+.homepage-game-price {
+  color: #4ade80;
+  font-weight: bold;
+}
+
+.homepage-game-button {
+  width: 100%;
+  background-color: #16a34a;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.homepage-game-button:hover {
+  background-color: #15803d;
+}
+
+.homepage-category-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .homepage-category-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.homepage-category-card {
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  height: 8rem;
+  display: flex;
+  align-items: end;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.homepage-category-card:hover {
+  transform: scale(1.05);
+}
+
+.homepage-category-action {
+  background: linear-gradient(to bottom right, #dc2626, #991b1b);
+}
+
+.homepage-category-openworld {
+  background: linear-gradient(to bottom right, #16a34a, #166534);
+}
+
+.homepage-category-puzzle {
+  background: linear-gradient(to bottom right, #2563eb, #1e40af);
+}
+
+.homepage-category-title {
+  color: white;
+  font-weight: bold;
+  font-size: 1.125rem;
+  z-index: 10;
+  position: relative;
+}
+
+.homepage-category-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.homepage-cola-ad {
+  background-color: #dc2626;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.homepage-cola-image {
+  border-radius: 0.25rem;
+}
+
+.homepage-footer {
+  background-color: #260C15;
+  padding: 2rem 1rem;
+  margin-top: 2rem;
+}
+
+.homepage-footer-content {
+  max-width: 80rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .homepage-footer-content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.homepage-footer-controller {
+  display: flex;
+  justify-content: center;
+}
+
+.homepage-footer-info {
+  text-align: center;
+}
+
+.homepage-footer-description {
+  color: #d1d5db;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.homepage-footer-contact-title {
+  color: white;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.homepage-footer-contact-info {
+  color: #d1d5db;
+  font-size: 0.875rem;
+}
+
+.homepage-footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.homepage-footer-social-link {
+  padding: 0.5rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.homepage-footer-social-twitter {
+  background-color: #2563eb;
+}
+
+.homepage-footer-social-pinterest {
+  background-color: #db2777;
+}
+
+.homepage-footer-social-x {
+  background-color: #000000;
+}
+
+.homepage-footer-qr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homepage-footer-qr-container {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.homepage-footer-qr-image {
+  width: 5rem;
+  height: 5rem;
+}
+
+.homepage-footer-qr-text {
+  color: #d1d5db;
+  font-size: 0.75rem;
+  text-align: center;
+}
