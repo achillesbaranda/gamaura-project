@@ -254,7 +254,14 @@ const Homepage = () => {
                         <span className="discount-badge">{games[currentSlide].discount}</span>
                         <div className="price-container">
                           <span className="original-price">{games[currentSlide].originalPrice}</span>
-                          <span className="current-price">{games[currentSlide].price}</span>
+                          <button 
+                            className="current-price-button"
+                            onClick={() => {
+                              alert(`🛒 Purchasing ${games[currentSlide].title} for ${games[currentSlide].price}!\n\n💰 You saved ${games[currentSlide].discount}!\n\nRedirecting to payment...`);
+                            }}
+                          >
+                            {games[currentSlide].price}
+                          </button>
                         </div>
                       </div>
                     </div>

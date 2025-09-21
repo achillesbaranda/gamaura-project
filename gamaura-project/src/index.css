@@ -221,6 +221,42 @@
   font-weight: bold;
 }
 
+.original-price-button {
+  text-decoration: line-through;
+  color: #9ca3af;
+  font-size: 0.875rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.original-price-button:hover {
+  background-color: rgba(156, 163, 175, 0.1);
+  color: #d1d5db;
+}
+
+.current-price-button {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.current-price-button:hover {
+  background: linear-gradient(135deg, #059669, #047857);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
 
 .carousel-btn {
   position: absolute;
@@ -306,7 +342,7 @@
   background-color: #2563eb;
   color: white;
   padding: 1rem 2rem;
-  border-radius: 0.5rem;
+  border-radius: 2rem;
   font-weight: 600;
   border: none;
   cursor: pointer;
