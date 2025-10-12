@@ -5,7 +5,7 @@
       "src": "gamaura-project/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "gamaura-project/build"
+        "distDir": "build"
       }
     }
   ],
