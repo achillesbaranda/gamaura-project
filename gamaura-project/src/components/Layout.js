@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Layout = ({ children }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -30,9 +31,9 @@ const Layout = ({ children }) => {
           </div>
 
           <nav className="homepage-nav">
-            <a href="/" className="homepage-nav-link">Home</a>
-            <a href="/tutorials" className="homepage-nav-link">Tutorials</a>
-            <a href="#about" className="homepage-nav-link">About Us</a>
+            <Link to="/" className="homepage-nav-link">Home</Link>
+            <Link to="/tutorials" className="homepage-nav-link">Tutorials</Link>
+            <Link to="/about" className="homepage-nav-link">About Us</Link>
             <a href="#play-to-gain" className="homepage-nav-link">Play to Gain</a>
             <a href="#news" className="homepage-nav-link">News</a>
             <a href="#feed" className="homepage-nav-link">Feed</a>
@@ -109,9 +110,9 @@ const Layout = ({ children }) => {
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
           <div className="homepage-mobile-nav">
-            <a href="/" className="homepage-mobile-nav-link">Home</a>
-            <a href="/tutorials" className="homepage-mobile-nav-link">Tutorials</a>
-            <a href="#about" className="homepage-mobile-nav-link">About Us</a>
+            <Link to="/" className="homepage-mobile-nav-link">Home</Link>
+            <Link to="/tutorials" className="homepage-mobile-nav-link">Tutorials</Link>
+            <Link to="/about" className="homepage-mobile-nav-link">About Us</Link>
             <a href="#play-to-gain" className="homepage-mobile-nav-link">Play to Gain</a>
             <a href="#news" className="homepage-mobile-nav-link">News</a>
             <a href="#game-credits" className="homepage-mobile-nav-link">Game Credits</a>

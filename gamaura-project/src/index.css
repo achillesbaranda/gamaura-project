@@ -1733,6 +1733,217 @@
   }
 }
 
+/* About Us Page Styles */
+.about-us-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, 
+    #2d1b47 0%, 
+    #3d1a52 25%, 
+    #4a1a5c 50%, 
+    #5d1e6b 75%, 
+    #7b2982 100%
+  );
+  padding: 2rem 0;
+}
+
+.about-us-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Top Section */
+.about-us-top-section {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  align-items: start;
+}
+
+.about-us-left-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.about-us-title-box {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 0.5rem;
+  padding: 1rem 1.5rem;
+  display: inline-block;
+  width: fit-content;
+}
+
+.about-us-title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.about-us-text-box {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+
+.about-us-text-box p {
+  color: white;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.about-us-founder {
+  /* background: rgba(44, 62, 80, 0.9); */
+  border-radius: 2rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: fit-content;
+}
+
+.about-us-founder-image {
+  background: rgba(44, 62, 80, 0.9);
+  width: 450px;
+  height: 350px;
+  border-radius: 2rem;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.about-us-founder-info h3 {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0 0 0.5rem 0;
+}
+
+.about-us-founder-info p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* What We Offer Section */
+.about-us-features {
+  margin-bottom: 2rem;
+}
+
+.about-us-section-title-box {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 0.5rem;
+  padding: 1rem 1.5rem;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+.about-us-section-title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.about-us-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.about-us-feature-card {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.about-us-feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.about-us-feature-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.about-us-feature-content {
+  padding: 1.5rem;
+}
+
+.about-us-feature-content h3 {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0 0 0.5rem 0;
+}
+
+.about-us-feature-content p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .about-us-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .about-us-top-section {
+    grid-template-columns: 1fr 350px;
+    gap: 2rem;
+  }
+  
+  .about-us-founder-image {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-us-main {
+    padding: 0 1rem;
+  }
+  
+  .about-us-top-section {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .about-us-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-us-founder-image {
+    width: 200px;
+    height: 200px;
+  }
+
+  .about-us-title {
+    font-size: 1.3rem;
+  }
+
+  .about-us-section-title {
+    font-size: 1.3rem;
+  }
+  
+  .about-us-title-box,
+  .about-us-section-title-box {
+    width: 100%;
+    text-align: center;
+  }
+}
+
 .homepage-footer-controller {
   display: flex;
   justify-content: center;
