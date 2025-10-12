@@ -1,24 +1,12 @@
 {
-  "version": 2,
-  "builds": [
+  "buildCommand": "cd gamaura-project && npm run build",
+  "outputDirectory": "gamaura-project/build",
+  "installCommand": "cd gamaura-project && npm install",
+  "framework": null,
+  "rewrites": [
     {
-      "src": "gamaura-project/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "build"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/static/(.*)",
-      "headers": {
-        "cache-control": "s-maxage=31536000,immutable"
-      }
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
