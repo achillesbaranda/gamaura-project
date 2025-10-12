@@ -4,6 +4,9 @@ const Homepage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [gameImages, setGameImages] = useState({});
   const [browseCarouselIndex, setBrowseCarouselIndex] = useState(0);
+  const [categoryCarouselIndex, setCategoryCarouselIndex] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
   const browseGames = [
     {
@@ -125,6 +128,27 @@ const Homepage = () => {
     setBrowseCarouselIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
   };
 
+  // Category carousel functions
+  const categories = [
+    { name: 'HORROR', cssClass: 'homepage-category-horror' },
+    { name: 'OPEN WORLD', cssClass: 'homepage-category-openworld' },
+    { name: 'PUZZLE', cssClass: 'homepage-category-puzzle' },
+    { name: 'ACTION', cssClass: 'homepage-category-action' },
+    { name: 'STRATEGY', cssClass: 'homepage-category-strategy' },
+    { name: 'RACING', cssClass: 'homepage-category-racing' }
+  ];
+
+  const categoriesPerSlide = 3;
+  const totalCategorySlides = Math.ceil(categories.length / categoriesPerSlide);
+
+  const nextCategorySlide = () => {
+    setCategoryCarouselIndex((prev) => (prev + 1) % totalCategorySlides);
+  };
+
+  const prevCategorySlide = () => {
+    setCategoryCarouselIndex((prev) => (prev - 1 + totalCategorySlides) % totalCategorySlides);
+  };
+
   const swapImages = (screenshotIndex) => {
     const currentGame = games[currentSlide];
     const gameKey = `game-${currentSlide}`;
@@ -171,11 +195,25 @@ const Homepage = () => {
       <header className="homepage-header">
         <div className="homepage-header-content">
    
-          <div className="homepage-logo">
-            <div className="homepage-logo-icon">
-              <span className="text-white font-bold text-sm">G</span>
+          <div 
+            className="homepage-logo"
+            onMouseMove={(e) => {
+              const rect = e.currentTarget.getBoundingClientRect();
+              const x = ((e.clientX - rect.left) / rect.width) * 100;
+              const y = ((e.clientY - rect.top) / rect.height) * 100;
+              e.currentTarget.style.setProperty('--mouse-x', `${x}%`);
+              e.currentTarget.style.setProperty('--mouse-y', `${y}%`);
+            }}
+          >
+            <img 
+              src="/images/GAMAURA-LOGO.png" 
+              alt="Gamaura Logo" 
+              className="homepage-logo-image"
+            />
+            <div className="homepage-logo-text-container">
+              <span className="homepage-logo-am">AM</span>
+              <span className="homepage-logo-aura">AURA</span>
             </div>
-            <span className="homepage-logo-text">GAMAURA</span>
           </div>
 
           
@@ -184,6 +222,8 @@ const Homepage = () => {
             <a href="#tutorials" className="homepage-nav-link">Tutorials</a>
             <a href="#about" className="homepage-nav-link">About Us</a>
             <a href="#play-to-gain" className="homepage-nav-link">Play to Gain</a>
+            <a href="#news" className="homepage-nav-link">News</a>
+            <a href="#feed" className="homepage-nav-link">Feed</a>
           </nav>
 
     
@@ -198,13 +238,79 @@ const Homepage = () => {
             </svg>
           </div>
 
+          {/* Profile Dropdown */}
+          <div className="homepage-profile-container">
+            <button 
+              className="homepage-profile-btn"
+              onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
+            >
+              <div className="homepage-profile-avatar">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <svg className={`w-4 h-4 transition-transform ${isProfileDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            
+            {isProfileDropdownOpen && (
+              <div className="homepage-profile-dropdown">
+                <a href="#profile" className="homepage-profile-dropdown-link">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                  Profile
+                </a>
+                <a href="#library" className="homepage-profile-dropdown-link">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                  </svg>
+                  Library
+                </a>
+                <a href="#game-credits" className="homepage-profile-dropdown-link">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                  </svg>
+                  Game Credits
+                </a>
+                <hr className="homepage-profile-dropdown-divider" />
+                <a href="#login" className="homepage-profile-dropdown-link">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                  </svg>
+                  Login/Sign Up
+                </a>
+              </div>
+            )}
+          </div>
 
-          <button className="homepage-mobile-menu">
+
+          <button 
+            className="homepage-mobile-menu"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
         </div>
+        
+        {/* Mobile Navigation Menu */}
+        {isMobileMenuOpen && (
+          <div className="homepage-mobile-nav">
+            <a href="#home" className="homepage-mobile-nav-link">Home</a>
+            <a href="#tutorials" className="homepage-mobile-nav-link">Tutorials</a>
+            <a href="#about" className="homepage-mobile-nav-link">About Us</a>
+            <a href="#play-to-gain" className="homepage-mobile-nav-link">Play to Gain</a>
+            <a href="#news" className="homepage-mobile-nav-link">News</a>
+            <a href="#game-credits" className="homepage-mobile-nav-link">Game Credits</a>
+            <a href="#feed" className="homepage-mobile-nav-link">Feed</a>
+            <a href="#library" className="homepage-mobile-nav-link">Library</a>
+            <a href="#profile" className="homepage-mobile-nav-link">Profile</a>
+            <a href="#login" className="homepage-mobile-nav-link">Login/Sign Up</a>
+          </div>
+        )}
       </header>
 
 
@@ -389,17 +495,46 @@ const Homepage = () => {
       <section className="homepage-section">
         <div className="homepage-section-content">
           <h2 className="homepage-browse-title mb-6">BROWSE CATEGORY</h2>
-          <div className="homepage-category-grid">
-            {[
-              { name: 'ACTION', cssClass: 'homepage-category-action' },
-              { name: 'OPEN WORLD', cssClass: 'homepage-category-openworld' },
-              { name: 'PUZZLE', cssClass: 'homepage-category-puzzle' }
-            ].map((category) => (
-              <div key={category.name} 
-                   className={`homepage-category-card ${category.cssClass}`}>
-                <h3 className="homepage-category-title">{category.name}</h3>
-                <div className="homepage-category-overlay"></div>
+          
+          <div className="category-carousel-container">
+            <button className="category-carousel-btn category-carousel-btn-prev" onClick={prevCategorySlide}>
+              &#8249;
+            </button>
+            
+            <div className="category-carousel-wrapper">
+              <div className="category-carousel-track" style={{
+                transform: `translateX(-${categoryCarouselIndex * 100}%)`
+              }}>
+                {Array.from({ length: totalCategorySlides }).map((_, slideIndex) => (
+                  <div key={slideIndex} className="category-slide">
+                    <div className="homepage-category-grid">
+                      {categories
+                        .slice(slideIndex * categoriesPerSlide, (slideIndex + 1) * categoriesPerSlide)
+                        .map((category) => (
+                          <div key={category.name} 
+                               className={`homepage-category-card ${category.cssClass}`}>
+                            <h3 className="homepage-category-title">{category.name}</h3>
+                            <div className="homepage-category-overlay"></div>
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                ))}
               </div>
+            </div>
+            
+            <button className="category-carousel-btn category-carousel-btn-next" onClick={nextCategorySlide}>
+              &#8250;
+            </button>
+          </div>
+          
+          <div className="category-carousel-indicators">
+            {Array.from({ length: totalCategorySlides }).map((_, index) => (
+              <button
+                key={index}
+                className={`category-carousel-indicator ${index === categoryCarouselIndex ? 'active' : ''}`}
+                onClick={() => setCategoryCarouselIndex(index)}
+              />
             ))}
           </div>
         </div>
@@ -419,8 +554,8 @@ const Homepage = () => {
       <footer className="homepage-footer">
         <div className="homepage-footer-content">
           <div className="homepage-footer-controller">
-            <img src="https://via.placeholder.com/150x100/333/fff?text=Controller" 
-                 alt="Gaming Controller" 
+            <img src="/images/GAMAURA-LOGO.png" 
+                 alt="Gamaura Logo" 
                  className="rounded-lg" />
           </div>
           
@@ -479,8 +614,8 @@ const Homepage = () => {
 
           <div className="homepage-footer-qr">
             <div className="homepage-footer-qr-container">
-              <img src="https://via.placeholder.com/100x100/000/fff?text=QR" 
-                   alt="QR Code" 
+              <img src="/images/GAMAURA-QR.png" 
+                   alt="Gamaura QR Code" 
                    className="homepage-footer-qr-image" />
             </div>
             <p className="homepage-footer-qr-text">
