@@ -155,7 +155,7 @@ const Layout = ({ children }) => {
             <div className="mb-4">
               <h3 className="homepage-footer-contact-title">Contact Us</h3>
               <p className="homepage-footer-contact-info">09917847843</p>
-              <p className="homepage-footer-contact-info">Gamaura@Thegmail.com</p>
+              <p className="homepage-footer-contact-info">gamaura.official.acc@gmail.com</p>
             </div>
 
             <div className="homepage-footer-social">

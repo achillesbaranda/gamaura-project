@@ -3,15 +3,29 @@ import React, { useState } from 'react';
 const HomepagePurchaseModal = ({ isOpen, onClose, game }) => {
   const [paymentMode, setPaymentMode] = useState('Gama Wallet');
   const [acknowledged, setAcknowledged] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState('1000 VP');
 
   if (!isOpen || !game) return null;
 
-  // Calculate prices based on discount
-  const originalPrice = parseFloat(game.originalPrice.replace('₱', '').replace(',', ''));
-  const finalPrice = parseFloat(game.price.replace('₱', '').replace(',', ''));
-  const discountAmount = originalPrice - finalPrice;
-  const valueAddedTax = 0; // No tax added to this platform
-  const finalBalance = 5600;
+  const creditPackages = {
+    'Valorant': [
+      { credits: '390 VP', price: 200 },
+      { credits: '1000 VP', price: 500 },
+      { credits: '2000 VP', price: 1000 },
+      { credits: '3650 VP', price: 2000 }
+    ],
+    'default': [
+      { credits: '500 Credits', price: 300 },
+      { credits: '1000 Credits', price: 600 },
+      { credits: '2500 Credits', price: 1500 },
+      { credits: '5000 Credits', price: 3000 }
+    ]
+  };
+
+  const packages = creditPackages[game.title] || creditPackages['default'];
+  const selectedCredit = packages.find(pkg => pkg.credits === selectedPackage);
+  const finalPrice = selectedCredit ? selectedCredit.price : 0;
+  const finalBalance = 8500;
 
   const handleConfirmPurchase = () => {
     if (!acknowledged) {
@@ -48,19 +62,25 @@ const HomepagePurchaseModal = ({ isOpen, onClose, game }) => {
           <div className="homepage-purchase-right">
             <h3 className="homepage-purchase-game-name">{game.title}</h3>
             
+            <div className="homepage-purchase-package-selection">
+              <h4>Select Package:</h4>
+              <div className="homepage-purchase-packages">
+                {packages.map((pkg, index) => (
+                  <button
+                    key={index}
+                    className={`homepage-package-btn ${selectedPackage === pkg.credits ? 'active' : ''}`}
+                    onClick={() => setSelectedPackage(pkg.credits)}
+                  >
+                    {pkg.credits}
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <div className="homepage-purchase-breakdown">
-              <h4>Payment Breakdown</h4>
               <div className="homepage-purchase-breakdown-row">
-                <span>Digital Price:</span>
-                <span>₱ {originalPrice.toLocaleString()}</span>
-              </div>
-              <div className="homepage-purchase-breakdown-row">
-                <span>Discount Applied:</span>
-                <span>- {game.discount} Discount</span>
-              </div>
-              <div className="homepage-purchase-breakdown-row">
-                <span>Value Added Tax:</span>
-                <span>No Tax added to this platform</span>
+                <span>Selected Credits:</span>
+                <span>{selectedPackage}</span>
               </div>
               <div className="homepage-purchase-breakdown-row total">
                 <span>Total Payment:</span>
@@ -70,16 +90,8 @@ const HomepagePurchaseModal = ({ isOpen, onClose, game }) => {
             
             <div className="homepage-purchase-payment-mode">
               <h4>Mode of Payment</h4>
-              <div className="homepage-purchase-payment-select">
-                <select 
-                  value={paymentMode} 
-                  onChange={(e) => setPaymentMode(e.target.value)}
-                >
-                  <option value="Gama Wallet">Gama Wallet</option>
-                  <option value="Credit Card">Credit Card</option>
-                  <option value="GCash">GCash</option>
-                  <option value="PayMaya">PayMaya</option>
-                </select>
+              <div className="homepage-purchase-payment-display">
+                <span className="homepage-payment-method">Gama Wallet</span>
               </div>
             </div>
             

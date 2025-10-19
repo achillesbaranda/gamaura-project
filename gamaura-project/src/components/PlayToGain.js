@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import newjeansMcdo from '../assets/newjeans-mcdo.png';
 import spinToWin from '../assets/spin-to-win.png';
+import SpinWheel from './SpinWheel';
 
 const PlayToGain = () => {
+  const [isSpinWheelOpen, setIsSpinWheelOpen] = useState(false);
+
   // Sample wheel game cards - all using the same spin-to-win image
   const wheelGames = Array(6).fill({
     title: "Spin the Wheel and Win!",
     image: spinToWin
   });
+
+  const handleSpinWheelClick = () => {
+    setIsSpinWheelOpen(true);
+  };
 
   return (
     <div className="play-to-gain-container">
@@ -37,7 +44,12 @@ const PlayToGain = () => {
         {/* Wheel Games Grid */}
         <div className="play-to-gain-games-grid">
           {wheelGames.map((game, index) => (
-            <div key={index} className="play-to-gain-game-card">
+            <div 
+              key={index} 
+              className="play-to-gain-game-card"
+              onClick={handleSpinWheelClick}
+              style={{ cursor: 'pointer' }}
+            >
               <div className="play-to-gain-game-image-wrapper">
                 <img 
                   src={game.image} 
@@ -62,6 +74,12 @@ const PlayToGain = () => {
           </div>
         </section>
       </div>
+
+      {/* Spin Wheel Modal */}
+      <SpinWheel 
+        isOpen={isSpinWheelOpen}
+        onClose={() => setIsSpinWheelOpen(false)}
+      />
     </div>
   );
 };

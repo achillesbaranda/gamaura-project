@@ -67,7 +67,7 @@ const Homepage = () => {
       id: 1,
       title: "PUBG",
       subtitle: "Player Unknown's Battlegrounds",
-      price: "₱10500",
+      price: "₱1050.00",
       discount: "-25%",
       originalPrice: "₱13667",
       status: "Now Available",
@@ -131,7 +131,6 @@ const Homepage = () => {
     setBrowseCarouselIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
   };
 
-  // Category carousel functions
   const categories = [
     { name: 'HORROR', cssClass: 'homepage-category-horror' },
     { name: 'OPEN WORLD', cssClass: 'homepage-category-openworld' },
@@ -241,7 +240,6 @@ const Homepage = () => {
             </svg>
           </div>
 
-          {/* Profile Dropdown */}
           <div className="homepage-profile-container">
             <button 
               className="homepage-profile-btn"
@@ -299,7 +297,6 @@ const Homepage = () => {
           </button>
         </div>
         
-        {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
           <div className="homepage-mobile-nav">
             <a href="#home" className="homepage-mobile-nav-link">Home</a>
@@ -410,7 +407,23 @@ const Homepage = () => {
               Unleash Your Gaming Aura—using our<br />
               logo-inspired gaming earbuds!
             </h3>
-            <button className="buy-button">
+            <button 
+              className="buy-button"
+              onClick={() => {
+                const earbudsProduct = {
+                  id: 'earbuds-001',
+                  title: 'Gamaura Gaming Earbuds',
+                  subtitle: 'Logo-inspired gaming earbuds',
+                  price: '₱1050.00',
+                  originalPrice: '₱15000',
+                  discount: '30% OFF',
+                  image: '/images/earbuds.png',
+                  status: 'Available'
+                };
+                setSelectedGame(earbudsProduct);
+                setIsPurchaseModalOpen(true);
+              }}
+            >
               🛒 Buy
             </button>
           </div>
@@ -467,7 +480,15 @@ const Homepage = () => {
                                 </div>
                                 <span className="browse-game-price">{game.price}</span>
                               </div>
-                              <button className="browse-game-button">
+                              <button 
+                                className="browse-game-button"
+                                onClick={() => {
+                                  if (game.price !== "Free") {
+                                    setSelectedGame(game);
+                                    setIsPurchaseModalOpen(true);
+                                  }
+                                }}
+                              >
                                 {game.price === "Free" ? "Play Now" : game.price}
                               </button>
                             </div>
@@ -575,7 +596,7 @@ const Homepage = () => {
             <div className="mb-4">
               <h3 className="homepage-footer-contact-title">Contact Us</h3>
               <p className="homepage-footer-contact-info">09917847843</p>
-              <p className="homepage-footer-contact-info">Gamaura@Thegmail.com</p>
+              <p className="homepage-footer-contact-info">gamaura.official.acc@gmail.com</p>
             </div>
 
             <div className="homepage-footer-social">
@@ -601,7 +622,6 @@ const Homepage = () => {
             </svg>
         </a>
 
-  {/* X (Twitter) */}
   <a
     href="https://x.com/Akiressuuu"
     className="homepage-footer-social-link homepage-footer-social-x"

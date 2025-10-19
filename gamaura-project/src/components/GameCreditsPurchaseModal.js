@@ -3,13 +3,35 @@ import React, { useState } from 'react';
 const GameCreditsPurchaseModal = ({ isOpen, onClose, item }) => {
   const [paymentMode, setPaymentMode] = useState('Gama Wallet');
   const [acknowledged, setAcknowledged] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState('1000 Credits');
 
   if (!isOpen || !item) return null;
 
-  const digitalPrice = item.price;
-  const valueAddedTax = 0; // No tax
-  const totalPayment = digitalPrice;
-  const finalBalance = 5943;
+  const creditPackages = {
+    'PUBG': [
+      { credits: '500 Credits', price: 300 },
+      { credits: '1000 Credits', price: 500 },
+      { credits: '2500 Credits', price: 1200 },
+      { credits: '5000 Credits', price: 2400 }
+    ],
+    'Valorant': [
+      { credits: '390 VP', price: 200 },
+      { credits: '1000 VP', price: 500 },
+      { credits: '2000 VP', price: 1000 },
+      { credits: '3650 VP', price: 2000 }
+    ],
+    'default': [
+      { credits: '500 Credits', price: 300 },
+      { credits: '1000 Credits', price: 500 },
+      { credits: '2500 Credits', price: 1200 },
+      { credits: '5000 Credits', price: 2400 }
+    ]
+  };
+
+  const packages = creditPackages[item.name] || creditPackages['default'];
+  const selectedCredit = packages.find(pkg => pkg.credits === selectedPackage);
+  const totalPayment = selectedCredit ? selectedCredit.price : 0;
+  const finalBalance = 8500;
 
   const handleConfirmPurchase = () => {
     if (!acknowledged) {
@@ -46,30 +68,36 @@ const GameCreditsPurchaseModal = ({ isOpen, onClose, item }) => {
           <div className="game-credits-purchase-right">
             <h3 className="game-credits-item-name">{item.name}</h3>
             
-            <div className="game-credits-breakdown">
-              <h4>Payment Breakdown</h4>
-              <div className="game-credits-breakdown-row">
-                <span>Digital Price:</span>
-                <span>₱ {digitalPrice}</span>
+            <div className="game-credits-package-selection">
+              <h4>Select Package:</h4>
+              <div className="game-credits-packages">
+                {packages.map((pkg, index) => (
+                  <button
+                    key={index}
+                    className={`game-credits-package-btn ${selectedPackage === pkg.credits ? 'active' : ''}`}
+                    onClick={() => setSelectedPackage(pkg.credits)}
+                  >
+                    {pkg.credits}
+                  </button>
+                ))}
               </div>
+            </div>
+
+            <div className="game-credits-breakdown">
               <div className="game-credits-breakdown-row">
-                <span>Value Added Tax:</span>
-                <span>₱ {valueAddedTax}</span>
+                <span>Selected Credits:</span>
+                <span>{selectedPackage}</span>
+              </div>
+              <div className="game-credits-breakdown-row total">
+                <span>Total Payment:</span>
+                <span>₱ {totalPayment.toLocaleString()}</span>
               </div>
             </div>
             
             <div className="game-credits-payment-mode">
               <h4>Mode of Payment</h4>
-              <div className="game-credits-payment-select">
-                <select 
-                  value={paymentMode} 
-                  onChange={(e) => setPaymentMode(e.target.value)}
-                >
-                  <option value="Gama Wallet">Gama Wallet</option>
-                  <option value="Credit Card">Credit Card</option>
-                  <option value="GCash">GCash</option>
-                  <option value="PayMaya">PayMaya</option>
-                </select>
+              <div className="game-credits-payment-display">
+                <span className="game-credits-payment-method">Gama Wallet</span>
               </div>
             </div>
             

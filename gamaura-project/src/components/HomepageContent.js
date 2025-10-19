@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import HomepagePurchaseModal from './HomepagePurchaseModal';
 
 const HomepageContent = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [gameImages, setGameImages] = useState({});
   const [browseCarouselIndex, setBrowseCarouselIndex] = useState(0);
   const [categoryCarouselIndex, setCategoryCarouselIndex] = useState(0);
+  const [isPurchaseModalOpen, setIsPurchaseModalOpen] = useState(false);
+  const [selectedGame, setSelectedGame] = useState(null);
 
   const browseGames = [
     {
@@ -12,48 +15,72 @@ const HomepageContent = () => {
       title: "Farlight 84",
       image: "https://tse2.mm.bing.net/th/id/OIP.nL1ND_HdbwAbmKBFpxqd6wHaEK?rs=1&pid=ImgDetMain&o=7&rm=3",
       price: "₱1024.00",
+      originalPrice: "₱1365.00", 
+      discount: "-25%",
       offer: "Offer ends in Dec 30, 2025",
-      platforms: ["PS", "PC"]
+      platforms: ["PS", "PC"],
+      subtitle: "Battle Royale shooter game",
+      status: "Available"
     },
     {
       id: 2,
       title: "Mobile Legends",
       image: "https://images.unsplash.com/photo-1556438064-2d7646166914?w=400&h=225&fit=crop&crop=center",
       price: "Free",
+      originalPrice: "Free",
+      discount: "Free to Play",
       offer: "In-app purchases available",
-      platforms: ["Mobile", "PC"]
+      platforms: ["Mobile", "PC"],
+      subtitle: "5v5 MOBA game",
+      status: "Available"
     },
     {
       id: 3,
       title: "Valorant",
       image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=225&fit=crop&crop=center",
       price: "Free",
+      originalPrice: "Free",
+      discount: "Free to Play",
       offer: "Battle Pass available",
-      platforms: ["PC", "Mobile"]
+      platforms: ["PC", "Mobile"],
+      subtitle: "Tactical FPS game",
+      status: "Available"
     },
     {
       id: 4,
       title: "Super Mario",
       image: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400&h=225&fit=crop&crop=center",
       price: "₱2499.00",
+      originalPrice: "₱2999.00",
+      discount: "-17%",
       offer: "Classic Nintendo Adventure",
-      platforms: ["Nintendo", "PC"]
+      platforms: ["Nintendo", "PC"],
+      subtitle: "Classic platformer adventure",
+      status: "Available"
     },
     {
       id: 5,
       title: "Chuxie",
       image: "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=400&h=225&fit=crop&crop=center",
       price: "₱899.00",
+      originalPrice: "₱1199.00",
+      discount: "-25%",
       offer: "Indie Adventure Game",
-      platforms: ["PC", "Mobile"]
+      platforms: ["PC", "Mobile"],
+      subtitle: "Indie adventure game",
+      status: "Available"
     },
     {
       id: 6,
       title: "Apex Legends",
       image: "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=400&h=225&fit=crop&crop=center",
       price: "Free",
+      originalPrice: "Free",
+      discount: "Free to Play",
       offer: "Season Pass Available",
-      platforms: ["PC", "PS", "Xbox"]
+      platforms: ["PC", "PS", "Xbox"],
+      subtitle: "Battle Royale with character abilities",
+      status: "Available"
     }
   ];
 
@@ -62,9 +89,9 @@ const HomepageContent = () => {
       id: 1,
       title: "PUBG",
       subtitle: "Player Unknown's Battlegrounds",
-      price: "₱10500",
+      price: "₱1050.00",
       discount: "-25%",
-      originalPrice: "₱13667",
+      originalPrice: "₱1400.00",
       status: "Now Available",
       image: "https://images.hdqwalls.com/wallpapers/pubg-mobile-z1.jpg",
       screenshots: [
@@ -216,7 +243,8 @@ const HomepageContent = () => {
                           <button 
                             className="current-price-button"
                             onClick={() => {
-                              alert(`🛒 Purchasing ${games[currentSlide].title} for ${games[currentSlide].price}!\n\n💰 You saved ${games[currentSlide].discount}!\n\nRedirecting to payment...`);
+                              setSelectedGame(games[currentSlide]);
+                              setIsPurchaseModalOpen(true);
                             }}
                           >
                             {games[currentSlide].price}
@@ -258,7 +286,23 @@ const HomepageContent = () => {
               Unleash Your Gaming Aura—using our<br />
               logo-inspired gaming earbuds!
             </h3>
-            <button className="buy-button">
+            <button 
+              className="buy-button"
+              onClick={() => {
+                const earbudsProduct = {
+                  id: 'earbuds-001',
+                  title: 'Gamaura Gaming Earbuds',
+                  subtitle: 'Logo-inspired gaming earbuds',
+                  price: '₱10500',
+                  originalPrice: '₱15000',
+                  discount: '30% OFF',
+                  image: '/images/earbuds.png',
+                  status: 'Available'
+                };
+                setSelectedGame(earbudsProduct);
+                setIsPurchaseModalOpen(true);
+              }}
+            >
               🛒 Buy
             </button>
           </div>
@@ -315,7 +359,15 @@ const HomepageContent = () => {
                                 </div>
                                 <span className="browse-game-price">{game.price}</span>
                               </div>
-                              <button className="browse-game-button">
+                              <button 
+                                className="browse-game-button"
+                                onClick={() => {
+                                  if (game.price !== "Free") {
+                                    setSelectedGame(game);
+                                    setIsPurchaseModalOpen(true);
+                                  }
+                                }}
+                              >
                                 {game.price === "Free" ? "Play Now" : game.price}
                               </button>
                             </div>
@@ -402,6 +454,12 @@ const HomepageContent = () => {
           <p className="homepage-ad-text text-center mt-2">This is an advertisement ⚠️</p>
         </div>
       </section>
+
+      <HomepagePurchaseModal 
+        isOpen={isPurchaseModalOpen}
+        onClose={() => setIsPurchaseModalOpen(false)}
+        game={selectedGame}
+      />
     </>
   );
 };

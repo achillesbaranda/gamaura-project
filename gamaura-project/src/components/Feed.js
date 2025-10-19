@@ -122,7 +122,6 @@ function Feed() {
 
       {/* See More Button */}
       <button className="feed-see-more">
-        <span className="feed-see-more-icon">⌄</span>
         <span>See More</span>
       </button>
     </div>

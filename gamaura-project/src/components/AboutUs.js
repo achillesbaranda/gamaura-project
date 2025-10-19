@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import achillesImage from '../assets/achilles-baranda-picture.png';
 import gamePurchasesImage from '../assets/gamepurchasesanddownloads.png';
 import gamingTutorialsImage from '../assets/gamingtutorials.png';
@@ -8,11 +9,56 @@ import libraryImage from '../assets/librarymanagement.png';
 import communityImage from '../assets/communityandsocialfeatures.png';
 
 const AboutUs = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState('');
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('');
+
+    try {
+      const serviceID = 'service_ezdhfdj';
+      const templateID = 'template_pfmm81j';  
+      const publicKey = 'kIM0ZbMhrQqYUqoLO';
+
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'gamaura.official.acc@gmail.com'
+      };
+
+      await emailjs.send(serviceID, templateID, templateParams, publicKey);
+      
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      console.error('Email send error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="about-us-container">
-      {/* Main Content */}
-      <div className="about-us-main">
-        {/* Top Section with About Us and Founder */}
+      <main className="about-us-main">
         <section className="about-us-top-section">
           <div className="about-us-left-content">
             <div className="about-us-title-box">
@@ -45,8 +91,7 @@ const AboutUs = () => {
           </div>
         </section>
 
-        {/* What We Offer Section */}
-        <section className="about-us-features">
+        <section className="about-us-what-we-offer">
           <div className="about-us-section-title-box">
             <h2 className="about-us-section-title">What We Offer</h2>
           </div>
@@ -127,7 +172,112 @@ const AboutUs = () => {
             </div>
           </div>
         </section>
-      </div>
+
+        {/* Contact Form Section */}
+        <section className="about-us-contact-section">
+          <div className="about-us-section-title-box">
+            <h2 className="about-us-section-title">Contact Us</h2>
+          </div>
+          
+          <div className="about-us-contact-content">
+            <div className="about-us-contact-info">
+              <h3>Get in Touch</h3>
+              <p>Have concerns, suggestions, or feedback about Gamaura? We'd love to hear from you! Send us a message and we'll get back to you as soon as possible.</p>
+              
+              <div className="about-us-contact-details">
+                <div className="contact-detail">
+                  <span className="contact-label">📧 Email:</span>
+                  <span>gamaura.official.acc@gmail.com</span>
+                </div>
+                <div className="contact-detail">
+                  <span className="contact-label">📞 Phone:</span>
+                  <span>09917847843</span>
+                </div>
+              </div>
+            </div>
+
+            <form className="about-us-contact-form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="name">Your Name *</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="Enter your full name"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="email">Your Email *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="Enter your email address"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="subject">Subject *</label>
+                <select
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  required
+                >
+                  <option value="">Select a subject</option>
+                  <option value="General Inquiry">General Inquiry</option>
+                  <option value="Bug Report">Bug Report</option>
+                  <option value="Feature Suggestion">Feature Suggestion</option>
+                  <option value="Technical Support">Technical Support</option>
+                  <option value="Feedback">Feedback</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="message">Your Message *</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  rows="5"
+                  placeholder="Please describe your concern, suggestion, or feedback in detail..."
+                ></textarea>
+              </div>
+
+              <button 
+                type="submit" 
+                className="contact-submit-btn"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </button>
+
+              {submitStatus === 'success' && (
+                <div className="submit-status success">
+                  ✅ Your message has been sent successfully! We'll get back to you soon.
+                </div>
+              )}
+
+              {submitStatus === 'error' && (
+                <div className="submit-status error">
+                  ❌ There was an error sending your message. Please try again or contact us directly at gamaura.official.acc@gmail.com
+                </div>
+              )}
+            </form>
+          </div>
+        </section>
+      </main>
     </div>
   );
 };
