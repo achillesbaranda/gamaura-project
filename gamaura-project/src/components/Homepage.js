@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import HomepagePurchaseModal from './HomepagePurchaseModal';
 
 const Homepage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -7,6 +8,8 @@ const Homepage = () => {
   const [categoryCarouselIndex, setCategoryCarouselIndex] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const [isPurchaseModalOpen, setIsPurchaseModalOpen] = useState(false);
+  const [selectedGame, setSelectedGame] = useState(null);
 
   const browseGames = [
     {
@@ -363,7 +366,8 @@ const Homepage = () => {
                           <button 
                             className="current-price-button"
                             onClick={() => {
-                              alert(`🛒 Purchasing ${games[currentSlide].title} for ${games[currentSlide].price}!\n\n💰 You saved ${games[currentSlide].discount}!\n\nRedirecting to payment...`);
+                              setSelectedGame(games[currentSlide]);
+                              setIsPurchaseModalOpen(true);
                             }}
                           >
                             {games[currentSlide].price}
@@ -624,6 +628,12 @@ const Homepage = () => {
           </div>
         </div>
       </footer>
+
+      <HomepagePurchaseModal 
+        isOpen={isPurchaseModalOpen}
+        onClose={() => setIsPurchaseModalOpen(false)}
+        game={selectedGame}
+      />
     </div>
   );
 };

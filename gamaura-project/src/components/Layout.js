@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import AuthModal from './AuthModal';
 
 const Layout = ({ children }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   return (
     <div className="homepage-container">
@@ -34,9 +36,9 @@ const Layout = ({ children }) => {
             <Link to="/" className="homepage-nav-link">Home</Link>
             <Link to="/tutorials" className="homepage-nav-link">Tutorials</Link>
             <Link to="/about" className="homepage-nav-link">About Us</Link>
-            <a href="#play-to-gain" className="homepage-nav-link">Play to Gain</a>
-            <a href="#news" className="homepage-nav-link">News</a>
-            <a href="#feed" className="homepage-nav-link">Feed</a>
+            <Link to="/play-to-gain" className="homepage-nav-link">Play to Gain</Link>
+            <Link to="/news" className="homepage-nav-link">News</Link>
+            <Link to="/feed" className="homepage-nav-link">Feed</Link>
           </nav>
 
           <div className="homepage-search">
@@ -68,31 +70,31 @@ const Layout = ({ children }) => {
             
             {isProfileDropdownOpen && (
               <div className="homepage-profile-dropdown">
-                <a href="#profile" className="homepage-profile-dropdown-link">
+                <Link to="/profile" className="homepage-profile-dropdown-link">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
                   Profile
-                </a>
-                <a href="#library" className="homepage-profile-dropdown-link">
+                </Link>
+                <Link to="/library" className="homepage-profile-dropdown-link">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                   </svg>
                   Library
-                </a>
-                <a href="#game-credits" className="homepage-profile-dropdown-link">
+                </Link>
+                <Link to="/game-credits" className="homepage-profile-dropdown-link">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
                   </svg>
                   Game Credits
-                </a>
+                </Link>
                 <hr className="homepage-profile-dropdown-divider" />
-                <a href="#login" className="homepage-profile-dropdown-link">
+                <button onClick={() => setIsAuthModalOpen(true)} className="homepage-profile-dropdown-link">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
                   </svg>
                   Login/Sign Up
-                </a>
+                </button>
               </div>
             )}
           </div>
@@ -113,16 +115,19 @@ const Layout = ({ children }) => {
             <Link to="/" className="homepage-mobile-nav-link">Home</Link>
             <Link to="/tutorials" className="homepage-mobile-nav-link">Tutorials</Link>
             <Link to="/about" className="homepage-mobile-nav-link">About Us</Link>
-            <a href="#play-to-gain" className="homepage-mobile-nav-link">Play to Gain</a>
-            <a href="#news" className="homepage-mobile-nav-link">News</a>
-            <a href="#game-credits" className="homepage-mobile-nav-link">Game Credits</a>
-            <a href="#feed" className="homepage-mobile-nav-link">Feed</a>
-            <a href="#library" className="homepage-mobile-nav-link">Library</a>
-            <a href="#profile" className="homepage-mobile-nav-link">Profile</a>
-            <a href="#login" className="homepage-mobile-nav-link">Login/Sign Up</a>
+            <Link to="/play-to-gain" className="homepage-mobile-nav-link">Play to Gain</Link>
+            <Link to="/news" className="homepage-mobile-nav-link">News</Link>
+            <Link to="/feed" className="homepage-mobile-nav-link">Feed</Link>
+            <Link to="/game-credits" className="homepage-mobile-nav-link">Game Credits</Link>
+            <Link to="/library" className="homepage-mobile-nav-link">Library</Link>
+            <Link to="/profile" className="homepage-mobile-nav-link">Profile</Link>
+            <button onClick={() => setIsAuthModalOpen(true)} className="homepage-mobile-nav-link">Login/Sign Up</button>
           </div>
         )}
       </header>
+
+      {/* Auth Modal */}
+      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
 
       {/* Page Content */}
       <main>
