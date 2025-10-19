@@ -7,7 +7,7 @@ const PlayToGain = () => {
   const [isSpinWheelOpen, setIsSpinWheelOpen] = useState(false);
 
   // Sample wheel game cards - all using the same spin-to-win image
-  const wheelGames = Array(6).fill({
+  const wheelGames = Array(1).fill({
     title: "Spin the Wheel and Win!",
     image: spinToWin
   });

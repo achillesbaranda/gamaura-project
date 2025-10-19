@@ -13,7 +13,7 @@ const Tutorials = () => {
       author: "Valorant PH",
       views: "1.2M views",
       timeAgo: "2 months ago",
-      thumbnail: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=300&h=200&fit=crop&crop=center",
+      thumbnail: "https://i.ytimg.com/vi/-nO-bWsxLG0/maxresdefault.jpg",
       category: "Action",
       game: "Valorant"
     },
@@ -23,27 +23,27 @@ const Tutorials = () => {
       author: "Valorant PH",
       views: "950K views",
       timeAgo: "3 months ago",
-      thumbnail: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=300&h=200&fit=crop&crop=center",
+      thumbnail: "https://i.ytimg.com/vi/fybbn3mclOs/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLC1Nfzz_0ZK5VE2yu2Fyz-uBlAnzQ",
       category: "Action",
       game: "Valorant"
     },
     {
       id: 3,
-      title: "Valorant Ultimate Beginner's Guide 2025",
+      title: "Valorant Ultimate Beginner's Guide 2023",
       author: "Valorant PH",
       views: "800K views",
       timeAgo: "1 month ago",
-      thumbnail: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=300&h=200&fit=crop&crop=center",
+      thumbnail: "https://i.ytimg.com/vi/_3nzm4GoHqA/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBXlWDXCOYgGjtXaGsg041kGXkQHg",
       category: "Action",
       game: "Valorant"
     },
     {
       id: 4,
-      title: "Valorant Ultimate Beginner's Guide 2024",
+      title: "Valorant Ultimate Beginner's Guide 2022",
       author: "Valorant PH",
       views: "1.1M views",
       timeAgo: "2 months ago",
-      thumbnail: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=300&h=200&fit=crop&crop=center",
+      thumbnail: "https://valo2asia.com/wp-content/uploads/2025/10/5d209c9d4c3621c667b8c15d69853ede88477ce1-1920x1080-1-1170x658.jpg",
       category: "Action",
       game: "Valorant"
     },
@@ -53,7 +53,7 @@ const Tutorials = () => {
       author: "PUBG Pro",
       views: "750K views",
       timeAgo: "1 month ago",
-      thumbnail: "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=300&h=200&fit=crop&crop=center",
+      thumbnail: "https://www.hollywoodreporter.com/wp-content/uploads/2019/10/pubg_mobile.jpg?w=1296&h=730&crop=1",
       category: "Action",
       game: "PUBG Battlegrounds"
     },
@@ -63,7 +63,7 @@ const Tutorials = () => {
       author: "GTA Master",
       views: "2.1M views",
       timeAgo: "3 months ago",
-      thumbnail: "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=300&h=200&fit=crop&crop=center",
+      thumbnail: "https://portforward.com/games/walkthroughs/Grand-Theft-Auto-V/grand-theft-auto-v-223-small.webp",
       category: "Open-World",
       game: "GTA V"
     },
@@ -73,7 +73,7 @@ const Tutorials = () => {
       author: "Pro Gaming",
       views: "650K views",
       timeAgo: "2 weeks ago",
-      thumbnail: "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=300&h=200&fit=crop&crop=center",
+      thumbnail: "https://img.redbull.com/images/c_limit,w_1500,h_1000/f_auto,q_auto/redbullcom/2018/11/16/53c293b7-3a90-4930-9139-b8d1e69443c6/pubg",
       category: "Action",
       game: "PUBG Battlegrounds"
     },
@@ -83,7 +83,7 @@ const Tutorials = () => {
       author: "Gaming Tips",
       views: "1.5M views",
       timeAgo: "1 month ago",
-      thumbnail: "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=300&h=200&fit=crop&crop=center",
+      thumbnail: "https://i.ytimg.com/vi/xv3wFGGeIsI/maxresdefault.jpg",
       category: "Open-World",
       game: "GTA V"
     }

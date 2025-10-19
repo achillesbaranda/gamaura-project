@@ -2221,8 +2221,9 @@
 
 /* Games Grid */
 .play-to-gain-games-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5rem;
   margin: 2rem 0;
 }
@@ -2274,7 +2275,6 @@
 /* Responsive Design */
 @media (max-width: 1024px) {
   .play-to-gain-games-grid {
-    grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
   }
 
@@ -2298,7 +2298,6 @@
   }
 
   .play-to-gain-games-grid {
-    grid-template-columns: 1fr;
     gap: 1rem;
   }
 
