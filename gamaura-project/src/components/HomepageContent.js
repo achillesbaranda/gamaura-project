@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import HomepagePurchaseModal from './HomepagePurchaseModal';
+import codwarfare from '../assets/codwarfare.jpg';
+import codwarfare3 from '../assets/codwarfare3.jpg';
+import codwarfareremastered from '../assets/codwarfareremastered.jpg';
 
 const HomepageContent = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -25,7 +28,7 @@ const HomepageContent = () => {
     {
       id: 2,
       title: "Mobile Legends",
-      image: "https://images.unsplash.com/photo-1556438064-2d7646166914?w=400&h=225&fit=crop&crop=center",
+      image: "https://cdn.prod.website-files.com/65956e2711516206d2d1258f/67c597753236d97f8a97978d_cover.webp",
       price: "Free",
       originalPrice: "Free",
       discount: "Free to Play",
@@ -37,7 +40,7 @@ const HomepageContent = () => {
     {
       id: 3,
       title: "Valorant",
-      image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=225&fit=crop&crop=center",
+      image: "https://cdn1.epicgames.com/offer/cbd5b3d310a54b12bf3fe8c41994174f/EGS_VALORANT_RiotGames_S1_2560x1440-892482f9cbec5827c7c4989d7feb2bf1?resize=1&w=480&h=270&quality=medium",
       price: "Free",
       originalPrice: "Free",
       discount: "Free to Play",
@@ -49,7 +52,7 @@ const HomepageContent = () => {
     {
       id: 4,
       title: "Super Mario",
-      image: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=400&h=225&fit=crop&crop=center",
+      image: "https://www.godisageek.com/wp-content/uploads/Super-Mario-Party-Jamboree-1.jpg",
       price: "₱2499.00",
       originalPrice: "₱2999.00",
       discount: "-17%",
@@ -61,7 +64,7 @@ const HomepageContent = () => {
     {
       id: 5,
       title: "Chuxie",
-      image: "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=400&h=225&fit=crop&crop=center",
+      image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2969160/header.jpg?t=1728712358",
       price: "₱899.00",
       originalPrice: "₱1199.00",
       discount: "-25%",
@@ -73,7 +76,7 @@ const HomepageContent = () => {
     {
       id: 6,
       title: "Apex Legends",
-      image: "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=400&h=225&fit=crop&crop=center",
+      image: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1172470/f002ac48d98f501231e7d8bd3cc418b65c8d511a/capsule_616x353.jpg?t=1754578148",
       price: "Free",
       originalPrice: "Free",
       discount: "Free to Play",
@@ -123,11 +126,11 @@ const HomepageContent = () => {
       discount: "-15%",
       originalPrice: "₱2940.00",
       status: "New Release",
-      image: "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=800&h=600&fit=crop&crop=center",
+      image: codwarfare,
       screenshots: [
-        "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=800&h=600&fit=crop&crop=center",
-        "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&h=600&fit=crop&crop=center",
-        "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800&h=600&fit=crop&crop=center"
+        codwarfare,
+        codwarfare3,
+        codwarfareremastered
       ]
     }
   ];

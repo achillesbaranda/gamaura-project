@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import HomepagePurchaseModal from './HomepagePurchaseModal';
+import codwarfare from '../assets/codwarfare.jpg';
+import codwarfare3 from '../assets/codwarfare3.jpg';
+import codwarfareremastered from '../assets/codwarfareremastered.jpg';
 
 const Homepage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -103,11 +106,11 @@ const Homepage = () => {
       discount: "-15%",
       originalPrice: "₱2940.00",
       status: "New Release",
-      image: "https://tse3.mm.bing.net/th/id/OIP.yD1FEQxaoLriYhLmlCGtkQHaEK?rs=1&pid=ImgDetMain&o=7&rm=3y",
+      image: codwarfare,
       screenshots: [
-        "https://imgs.callofduty.com/content/dam/atvi/callofduty/cod-touchui/mw3/meta/reveal/jpt-reveal-meta.jpg",
-        "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/11/call-of-duty-modern-warfare-3-cod-mw3-skidrow-map-team-action-with-game-logo.jpg",
-        "https://cdn.wccftech.com/wp-content/uploads/2023/08/WCCFcallofdutymodernwarfare3-HD-scaled.jpg"
+        codwarfare3,
+        codwarfareremastered,
+        codwarfare
       ]
     }
   ];
